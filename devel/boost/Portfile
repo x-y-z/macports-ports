@@ -1,13 +1,11 @@
 # -*- coding: utf-8; mode: tcl; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- vim:fenc=utf-8:filetype=tcl:et:sw=4:ts=4:sts=4
-# $Id$
 
 PortSystem      1.0
 PortGroup       compiler_blacklist_versions 1.0
 PortGroup       mpi 1.0
 
 name            boost
-version         1.59.0
-revision        2
+version         1.63.0
 license         Boost-1
 categories      devel
 platforms       darwin
@@ -26,8 +24,9 @@ set distver     [join [split ${version} .] _]
 distname        ${name}_${distver}
 use_bzip2       yes
 
-checksums       rmd160  a106b3cd1dbda2323e5e84c7106cedee327db03c \
-                sha256  727a932322d94287b62abb1bd2d41723eec4356a7728909e38adb65ca25241ca
+checksums \
+    rmd160  9781b51fcf1919b98ef3356af988fd8a73e7accb \
+    sha256  beae2529f759f6b3bf3f4969a19c2e9d6f0c503edcb2de4a61d1428519fcb3b0
 
 depends_lib     port:zlib \
                 port:expat \
@@ -45,9 +44,7 @@ post-extract {
 
 patchfiles      patch-tools-build-src-engine-build.sh.diff \
                 patch-tools-build-src-engine-build.jam.diff \
-                patch-apple-clang-no-libcxx.diff \
-                patch-libs-context-src-asm-make_ppc32_sysv_macho_gas.S.diff \
-                patch-log-setup-link.diff
+                patch-apple-clang-no-libcxx.diff
                 # patch-apple-clang-no-libcxx.diff fixes a clang configuration
                 # error that occurs on OS X 10.7 and 10.8 due to the assumption
                 # that if clang is the compiler in use it must be using libc++.
@@ -62,7 +59,7 @@ patchfiles      patch-tools-build-src-engine-build.sh.diff \
 
 # temporary patch to fix: explicit template instanciations in
 # boost::serialization don't get exported with all compilers; this fix
-# is already in the boost repo & will be part of the next release. See
+# is already in the boost repo & will be part of a future release. See
 # also the following tickets:
 # https://trac.macports.org/ticket/48717
 # https://svn.boost.org/trac/boost/ticket/11671
