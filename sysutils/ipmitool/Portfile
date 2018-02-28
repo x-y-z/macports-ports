@@ -42,4 +42,4 @@ post-patch {
     reinplace "s|-Wno-packed-bitfield-compat||g" ${worksrcpath}/configure
 }
     
-configure.args  --mandir=${prefix}/share/man
+configure.args-append  --mandir=${prefix}/share/man
